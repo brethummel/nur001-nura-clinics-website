@@ -186,7 +186,7 @@
                     	<?php $appointments = get_field('appointments_number', 'options'); ?>
                         <li class="<?php $me = 'patient-portal'; echo($me); ?><?php if ($slug == $me || $me == $section) { ?> current<?php } ?>"><a href="<?php bloginfo('url'); ?>/for-patients/<?php echo($me); ?>/">Patient Portal</a></li>
                         <li class="<?php $me = 'careers-at-nura'; echo($me); ?><?php if ($slug == $me || $me == $section) { ?> current<?php } ?>"><a href="<?php bloginfo('url'); ?>/about-nura/<?php echo($me); ?>/">Careers</a></li>
-                        <li class="appointments"><a href="tel:<?php echo($appointments); ?>/"><?php echo($appointments); ?></a></li>
+                        <li class="<?php $me = 'insurance-and-billing'; echo($me); ?><?php if ($slug == $me || $me == $section) { ?> current<?php } ?>"><a href="<?php bloginfo('url'); ?>/for-patients/<?php echo($me); ?>/">Pay Bill</a></li>
                     </ul>
                 </div>
                 <div class="menu appointments-button col-lg-4">
