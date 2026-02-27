@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.4 - 2026-02-27
+- corrected issue with functions being declared twice when block is added to a page multiple times
+
 ## 1.1.3 - 2026-01-27
 - added functionality to detect when quotes are particularly long or short
 - dynamically add a class of `.long` and `.short` to each slide that is abnormal

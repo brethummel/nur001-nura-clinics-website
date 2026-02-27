@@ -1,4 +1,7 @@
 <?php
+
+$version = '1.1.1';
+
 /*
 Partial Name: buttons
 */
@@ -6,7 +9,7 @@ Partial Name: buttons
 
 <!-- BEGIN BUTTONS -->
 <?php $buttons = $args; ?>
-<?php if (is_string(array_key_first($buttons)) && (array_key_first($buttons[array_key_first($buttons)]) == 'settings') || array_key_first($buttons) == 'button') { // legacy
+<?php if (is_string(array_key_first($buttons)) && array_key_first($buttons[array_key_first($buttons)]) == 'settings') {
     $buttons = array($buttons); // this corrects for single buttons not in a repeater
 } ?>
 <?php foreach ($buttons as $button) { ?>

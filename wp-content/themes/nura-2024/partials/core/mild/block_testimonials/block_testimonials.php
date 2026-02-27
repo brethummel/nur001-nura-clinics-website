@@ -1,6 +1,6 @@
 <?php
 
-$version = '1.1.3';
+$version = '1.1.4';
 
 /*
 Partial Name: block_testimonials
@@ -37,43 +37,47 @@ Partial Name: block_testimonials
 	 * @return int Median word count (0 if none)
 	 */
 
-	function spr_testimonials_median_wordcount($quotes) {
-		$counts = [];
-		if (!is_array($quotes)) {
-			return 0;
-		}
-		foreach ($quotes as $q) {
-			if (!isset($q['quote'])) {
-				continue;
+	if (!function_exists('spr_testimonials_median_wordcount')) {
+		function spr_testimonials_median_wordcount($quotes) {
+			$counts = [];
+			if (!is_array($quotes)) {
+				return 0;
 			}
-			$c = spr_testimonial_wordcount($q['quote']);
-			if ($c > 0) {
-				$counts[] = $c;
+			foreach ($quotes as $q) {
+				if (!isset($q['quote'])) {
+					continue;
+				}
+				$c = spr_testimonial_wordcount($q['quote']);
+				if ($c > 0) {
+					$counts[] = $c;
+				}
 			}
+			$n = count($counts);
+			if ($n === 0) {
+				return 0;
+			}
+			sort($counts, SORT_NUMERIC);
+			$mid = (int)floor($n / 2);
+			if ($n % 2) {
+				return (int)$counts[$mid]; // odd -> middle; even -> average of two middles
+			}
+			return (int)round(($counts[$mid - 1] + $counts[$mid]) / 2);
 		}
-		$n = count($counts);
-		if ($n === 0) {
-			return 0;
-		}
-		sort($counts, SORT_NUMERIC);
-		$mid = (int)floor($n / 2);
-		if ($n % 2) {
-			return (int)$counts[$mid]; // odd -> middle; even -> average of two middles
-		}
-		return (int)round(($counts[$mid - 1] + $counts[$mid]) / 2);
 	}
 
 	/** ===== TESTIMONIAL WORD COUNTS =====
 	 * Strip markup + normalize whitespace, then return word count (English).
 	 */
 
-	function spr_testimonial_wordcount($text) {
-		$text = html_entity_decode(strip_tags((string)$text), ENT_QUOTES, 'UTF-8');
-		$text = preg_replace('/\s+/u', ' ', trim($text));
-		if ($text === '') {
-			return 0;
+	if (!function_exists('spr_testimonial_wordcount')) {
+		function spr_testimonial_wordcount($text) {
+			$text = html_entity_decode(strip_tags((string)$text), ENT_QUOTES, 'UTF-8');
+			$text = preg_replace('/\s+/u', ' ', trim($text));
+			if ($text === '') {
+				return 0;
+			}
+			return str_word_count($text);
 		}
-		return str_word_count($text);
 	}
 
 
