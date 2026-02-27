@@ -1,0 +1,3 @@
+[submodule "wp-content/themes/nura-2024/_core_mirror"]
+	path = wp-content/themes/nura-2024/_core_mirror
+	url = https://github.com/brethummel/springboard-core.git
